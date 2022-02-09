@@ -1,4 +1,4 @@
 import FastImage from './FastImage'
-import { CustomFastImage } from './cachee'
+import { CacheeImage } from './cachee'
 
-export { FastImage, CustomFastImage }
+export { FastImage, CacheeImage }

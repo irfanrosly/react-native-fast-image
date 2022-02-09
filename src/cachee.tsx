@@ -4,7 +4,7 @@ import FastImage from './FastImage' //install from MBB fork with D++ features ;)
 import PropTypes from 'prop-types'
 
 //i need to allow any props existing comes
-export const CustomFastImage = (props: any) => {
+export const CacheeImage = (props: any) => {
     let {
         source, // already
     } = props
@@ -42,7 +42,7 @@ export const CustomFastImage = (props: any) => {
     )
 }
 
-CustomFastImage.propTypes = {
+CacheeImage.propTypes = {
     source: PropTypes.any.isRequired,
     name: PropTypes.string,
     key: PropTypes.string,
@@ -53,6 +53,6 @@ CustomFastImage.propTypes = {
     resizeMode: PropTypes.oneOf(['contain', 'cover', 'stretch', 'center']),
 }
 
-CustomFastImage.defaultProps = {
+CacheeImage.defaultProps = {
     priority: 'high',
 }
