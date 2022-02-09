@@ -1,4 +1,4 @@
 import FastImage from './FastImage';
-import { CustomFastImage } from './cachee';
-export { FastImage, CustomFastImage };
+import { CacheeImage } from './cachee';
+export { FastImage, CacheeImage };
 //# sourceMappingURL=index.d.ts.map

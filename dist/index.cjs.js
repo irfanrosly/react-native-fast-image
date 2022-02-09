@@ -155,7 +155,7 @@ const FastImageView = reactNative.requireNativeComponent('FastImageView', FastIm
   }
 });
 
-const CustomFastImage = props => {
+const CacheeImage = props => {
   var _source;
 
   let {
@@ -199,7 +199,7 @@ const CustomFastImage = props => {
 
   }));
 };
-CustomFastImage.propTypes = {
+CacheeImage.propTypes = {
   source: PropTypes__default['default'].any.isRequired,
   name: PropTypes__default['default'].string,
   key: PropTypes__default['default'].string,
@@ -207,9 +207,9 @@ CustomFastImage.propTypes = {
   headers: PropTypes__default['default'].any,
   resizeMode: PropTypes__default['default'].oneOf(['contain', 'cover', 'stretch', 'center'])
 };
-CustomFastImage.defaultProps = {
+CacheeImage.defaultProps = {
   priority: 'high'
 };
 
-exports.CustomFastImage = CustomFastImage;
+exports.CacheeImage = CacheeImage;
 exports.FastImage = FastImage;
