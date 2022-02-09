@@ -68,22 +68,20 @@ and
 **Note: You must be using React Native 0.60.0 or higher to use the most recent version of `react-native-fast-image`.**
 
 ```bash
-yarn add react-native-fast-image
+yarn add https://github.com/irfanrosly/react-native-fast-image#next
 cd ios && pod install
 ```
 
 ```jsx
-import FastImage from 'react-native-fast-image'
+import { CacheeImage } from 'cachee'
 
 const YourImage = () => (
-    <FastImage
+    <CacheeImage
         style={{ width: 200, height: 200 }}
         source={{
             uri: 'https://unsplash.it/400/400?image=1',
-            headers: { Authorization: 'someAuthToken' },
-            priority: FastImage.priority.normal,
         }}
-        resizeMode={FastImage.resizeMode.contain}
+        resizeMode="contain"
     />
 )
 ```
