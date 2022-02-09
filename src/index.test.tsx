@@ -1,7 +1,7 @@
 import { StyleSheet, Platform } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import FastImage from './index'
+import FastImage from './FastImage'
 
 Platform.OS = 'ios'
 

@@ -1,13 +1,17 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var _extends = require('@babel/runtime/helpers/extends');
 var React = require('react');
 var reactNative = require('react-native');
+var PropTypes = require('prop-types');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var _extends__default = /*#__PURE__*/_interopDefaultLegacy(_extends);
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
 
 const isAndroid = reactNative.Platform.OS === 'android';
 const FastImageViewNativeModule = reactNative.NativeModules.FastImageView;
@@ -151,4 +155,61 @@ const FastImageView = reactNative.requireNativeComponent('FastImageView', FastIm
   }
 });
 
-module.exports = FastImage;
+const CustomFastImage = props => {
+  var _source;
+
+  let {
+    source // already
+
+  } = props;
+  const {
+    resizeMode,
+    //already
+    style,
+    //already
+    // name, //already ???
+    // key, //already ???
+    priority,
+    // new
+    headers // new
+
+  } = props;
+
+  if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
+    source = { ...source,
+      ...(headers && {
+        headers: headers
+      }),
+      ...(priority && {
+        priority: 'high'
+      })
+    };
+  } // facade pattern
+
+
+  return /*#__PURE__*/React__default['default'].createElement(FastImage // key={key}
+  // name={name}
+  , _extends__default['default']({
+    style: { ...style
+    },
+    source: source
+  }, props, {
+    resizeMode: resizeMode //   onLoad={onImageLoad}
+    // onError={onError}
+
+  }));
+};
+CustomFastImage.propTypes = {
+  source: PropTypes__default['default'].any.isRequired,
+  name: PropTypes__default['default'].string,
+  key: PropTypes__default['default'].string,
+  priority: PropTypes__default['default'].oneOf(['low', 'normal', 'high']),
+  headers: PropTypes__default['default'].any,
+  resizeMode: PropTypes__default['default'].oneOf(['contain', 'cover', 'stretch', 'center'])
+};
+CustomFastImage.defaultProps = {
+  priority: 'high'
+};
+
+exports.CustomFastImage = CustomFastImage;
+exports.FastImage = FastImage;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import FastImage from './index' //install from MBB fork with D++ features ;)
+import FastImage from './FastImage' //install from MBB fork with D++ features ;)
 import PropTypes from 'prop-types'
 
 //i need to allow any props existing comes

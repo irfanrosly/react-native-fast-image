@@ -1,6 +1,7 @@
 import _extends from '@babel/runtime/helpers/extends';
 import React, { forwardRef, memo } from 'react';
 import { Platform, NativeModules, StyleSheet, requireNativeComponent, Image, View } from 'react-native';
+import PropTypes from 'prop-types';
 
 const isAndroid = Platform.OS === 'android';
 const FastImageViewNativeModule = NativeModules.FastImageView;
@@ -144,4 +145,60 @@ const FastImageView = requireNativeComponent('FastImageView', FastImage, {
   }
 });
 
-export default FastImage;
+const CustomFastImage = props => {
+  var _source;
+
+  let {
+    source // already
+
+  } = props;
+  const {
+    resizeMode,
+    //already
+    style,
+    //already
+    // name, //already ???
+    // key, //already ???
+    priority,
+    // new
+    headers // new
+
+  } = props;
+
+  if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
+    source = { ...source,
+      ...(headers && {
+        headers: headers
+      }),
+      ...(priority && {
+        priority: 'high'
+      })
+    };
+  } // facade pattern
+
+
+  return /*#__PURE__*/React.createElement(FastImage // key={key}
+  // name={name}
+  , _extends({
+    style: { ...style
+    },
+    source: source
+  }, props, {
+    resizeMode: resizeMode //   onLoad={onImageLoad}
+    // onError={onError}
+
+  }));
+};
+CustomFastImage.propTypes = {
+  source: PropTypes.any.isRequired,
+  name: PropTypes.string,
+  key: PropTypes.string,
+  priority: PropTypes.oneOf(['low', 'normal', 'high']),
+  headers: PropTypes.any,
+  resizeMode: PropTypes.oneOf(['contain', 'cover', 'stretch', 'center'])
+};
+CustomFastImage.defaultProps = {
+  priority: 'high'
+};
+
+export { CustomFastImage, FastImage };
