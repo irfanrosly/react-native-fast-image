@@ -35,7 +35,7 @@ export const CacheeImage = (props: any) => {
         <>
             {source?.uri ? (
                 <AnimatedFastImage
-                    style={[...style, { opacity: imageOpacity }]}
+                    style={{ ...style, opacity: imageOpacity }}
                     source={source}
                     {...props}
                     resizeMode={resizeMode}
@@ -45,7 +45,7 @@ export const CacheeImage = (props: any) => {
                 <Animated.Image
                     source={thumbnailSource || source}
                     resizeMode={resizeMode}
-                    style={[...style, { opacity: thumbnailOpacity }]}
+                    style={{ ...style, opacity: imageOpacity }}
                     blurRadius={10}
                     onLoad={onLoadThumbnail}
                 />
