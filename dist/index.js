@@ -148,8 +148,8 @@ const FastImageView = requireNativeComponent('FastImageView', FastImage, {
 const CacheeImage = props => {
   var _source, _source2;
 
-  const thumbnailOpacity = new Animated.Value(0);
-  const imageOpacity = new Animated.Value(0.8);
+  let thumbnailOpacity = new Animated.Value(0);
+  let imageOpacity = new Animated.Value(0.8);
   let {
     source
   } = props;
@@ -183,6 +183,7 @@ const CacheeImage = props => {
   const onLoadImage = () => {
     Animated.timing(imageOpacity, {
       toValue: 1,
+      duration: 1000,
       useNativeDriver: true
     }).start();
   };

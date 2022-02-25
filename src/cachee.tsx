@@ -4,8 +4,8 @@ import FastImage from './FastImage'
 import PropTypes from 'prop-types'
 
 export const CacheeImage = (props: any) => {
-    const thumbnailOpacity = new Animated.Value(0)
-    const imageOpacity = new Animated.Value(0.8)
+    let thumbnailOpacity = new Animated.Value(0)
+    let imageOpacity = new Animated.Value(0.8)
     let { source } = props
     const { resizeMode, style, priority, headers, thumbnailSource } = props
     const AnimatedFastImage = Animated.createAnimatedComponent(FastImage)
@@ -27,6 +27,7 @@ export const CacheeImage = (props: any) => {
     const onLoadImage = () => {
         Animated.timing(imageOpacity, {
             toValue: 1,
+            duration: 1000,
             useNativeDriver: true,
         }).start()
     }
