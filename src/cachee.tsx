@@ -1,22 +1,12 @@
 import React from 'react'
-
-import FastImage from './FastImage' //install from MBB fork with D++ features ;)
+import { Image } from 'react-native'
+import FastImage from './FastImage'
 import PropTypes from 'prop-types'
 
-//i need to allow any props existing comes
 export const CacheeImage = (props: any) => {
-    let {
-        source, // already
-    } = props
+    let { source } = props
 
-    const {
-        resizeMode, //already
-        style, //already
-        // name, //already ???
-        // key, //already ???
-        priority, // new
-        headers, // new
-    } = props
+    const { resizeMode, style, priority, headers, thumbnailSource } = props
 
     if (!source?.priority && source.uri) {
         source = {
@@ -26,19 +16,23 @@ export const CacheeImage = (props: any) => {
         }
     }
 
-    // facade pattern
-
     return (
-        <FastImage
-            // key={key}
-            // name={name}
-            style={{ ...style }}
-            source={source}
-            {...props}
-            resizeMode={resizeMode}
-            //   onLoad={onImageLoad}
-            // onError={onError}
-        />
+        <>
+            {source?.uri ? (
+                <FastImage
+                    style={{ ...style }}
+                    source={source}
+                    {...props}
+                    resizeMode={resizeMode}
+                />
+            ) : (
+                <Image
+                    source={thumbnailSource || source}
+                    resizeMode={resizeMode}
+                    style={{ ...style }}
+                />
+            )}
+        </>
     )
 }
 
@@ -46,11 +40,10 @@ CacheeImage.propTypes = {
     source: PropTypes.any.isRequired,
     name: PropTypes.string,
     key: PropTypes.string,
-
     priority: PropTypes.oneOf(['low', 'normal', 'high']),
     headers: PropTypes.any,
-
     resizeMode: PropTypes.oneOf(['contain', 'cover', 'stretch', 'center']),
+    thumbnailSource: PropTypes.string,
 }
 
 CacheeImage.defaultProps = {
