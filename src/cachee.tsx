@@ -1,11 +1,12 @@
 import React from 'react'
-import { Image } from 'react-native'
+import { Image, Animated } from 'react-native'
 import FastImage from './FastImage'
 import PropTypes from 'prop-types'
 
 export const CacheeImage = (props: any) => {
+    let thumbnailOpacity = new Animated.Value(0)
+    let imageOpacity = new Animated.Value(0.8)
     let { source } = props
-
     const { resizeMode, style, priority, headers, thumbnailSource } = props
 
     if (!source?.priority && source.uri) {
@@ -16,21 +17,37 @@ export const CacheeImage = (props: any) => {
         }
     }
 
+    const onLoadThumbnail = () => {
+        Animated.timing(thumbnailOpacity, {
+            toValue: 1,
+            useNativeDriver: true,
+        }).start()
+    }
+
+    const onLoadImage = () => {
+        Animated.timing(imageOpacity, {
+            toValue: 1,
+            useNativeDriver: true,
+        }).start()
+    }
+
     return (
         <>
             {source?.uri ? (
                 <FastImage
-                    style={{ ...style }}
+                    style={[...style, { opacity: imageOpacity }]}
                     source={source}
                     {...props}
                     resizeMode={resizeMode}
+                    onLoad={onLoadImage}
                 />
             ) : (
                 <Image
                     source={thumbnailSource || source}
                     resizeMode={resizeMode}
-                    style={{ ...style }}
+                    style={[...style, { opacity: thumbnailOpacity }]}
                     blurRadius={10}
+                    onLoad={onLoadThumbnail}
                 />
             )}
         </>

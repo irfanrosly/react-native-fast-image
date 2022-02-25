@@ -158,6 +158,8 @@ const FastImageView = reactNative.requireNativeComponent('FastImageView', FastIm
 const CacheeImage = props => {
   var _source, _source2;
 
+  let thumbnailOpacity = new reactNative.Animated.Value(0);
+  let imageOpacity = new reactNative.Animated.Value(0.8);
   let {
     source
   } = props;
@@ -180,18 +182,36 @@ const CacheeImage = props => {
     };
   }
 
+  const onLoadThumbnail = () => {
+    reactNative.Animated.timing(thumbnailOpacity, {
+      toValue: 1,
+      useNativeDriver: true
+    }).start();
+  };
+
+  const onLoadImage = () => {
+    reactNative.Animated.timing(imageOpacity, {
+      toValue: 1,
+      useNativeDriver: true
+    }).start();
+  };
+
   return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? /*#__PURE__*/React__default['default'].createElement(FastImage, _extends__default['default']({
-    style: { ...style
-    },
+    style: [...style, {
+      opacity: imageOpacity
+    }],
     source: source
   }, props, {
-    resizeMode: resizeMode
+    resizeMode: resizeMode,
+    onLoad: onLoadImage
   })) : /*#__PURE__*/React__default['default'].createElement(reactNative.Image, {
     source: thumbnailSource || source,
     resizeMode: resizeMode,
-    style: { ...style
-    },
-    blurRadius: 10
+    style: [...style, {
+      opacity: thumbnailOpacity
+    }],
+    blurRadius: 10,
+    onLoad: onLoadThumbnail
   }));
 };
 CacheeImage.propTypes = {
