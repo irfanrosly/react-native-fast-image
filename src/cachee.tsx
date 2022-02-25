@@ -30,6 +30,7 @@ export const CacheeImage = (props: any) => {
                     source={thumbnailSource || source}
                     resizeMode={resizeMode}
                     style={{ ...style }}
+                    blurRadius={10}
                 />
             )}
         </>
