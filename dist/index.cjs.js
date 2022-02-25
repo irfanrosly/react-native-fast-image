@@ -156,23 +156,17 @@ const FastImageView = reactNative.requireNativeComponent('FastImageView', FastIm
 });
 
 const CacheeImage = props => {
-  var _source;
+  var _source, _source2;
 
   let {
-    source // already
-
+    source
   } = props;
   const {
     resizeMode,
-    //already
     style,
-    //already
-    // name, //already ???
-    // key, //already ???
     priority,
-    // new
-    headers // new
-
+    headers,
+    thumbnailSource
   } = props;
 
   if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
@@ -184,19 +178,20 @@ const CacheeImage = props => {
         priority: 'high'
       })
     };
-  } // facade pattern
+  }
 
-
-  return /*#__PURE__*/React__default['default'].createElement(FastImage // key={key}
-  // name={name}
-  , _extends__default['default']({
+  return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? /*#__PURE__*/React__default['default'].createElement(FastImage, _extends__default['default']({
     style: { ...style
     },
     source: source
   }, props, {
-    resizeMode: resizeMode //   onLoad={onImageLoad}
-    // onError={onError}
-
+    resizeMode: resizeMode
+  })) : /*#__PURE__*/React__default['default'].createElement(reactNative.Image, {
+    source: thumbnailSource || source,
+    resizeMode: resizeMode,
+    style: { ...style
+    },
+    blurRadius: 10
   }));
 };
 CacheeImage.propTypes = {
@@ -205,7 +200,8 @@ CacheeImage.propTypes = {
   key: PropTypes__default['default'].string,
   priority: PropTypes__default['default'].oneOf(['low', 'normal', 'high']),
   headers: PropTypes__default['default'].any,
-  resizeMode: PropTypes__default['default'].oneOf(['contain', 'cover', 'stretch', 'center'])
+  resizeMode: PropTypes__default['default'].oneOf(['contain', 'cover', 'stretch', 'center']),
+  thumbnailSource: PropTypes__default['default'].string
 };
 CacheeImage.defaultProps = {
   priority: 'high'
