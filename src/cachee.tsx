@@ -4,8 +4,8 @@ import FastImage from './FastImage'
 import PropTypes from 'prop-types'
 
 export const CacheeImage = (props: any) => {
-    let thumbnailOpacity = new Animated.Value(0)
-    let imageOpacity = new Animated.Value(0.8)
+    const thumbnailOpacity = new Animated.Value(0)
+    const imageOpacity = new Animated.Value(0.8)
     let { source } = props
     const { resizeMode, style, priority, headers, thumbnailSource } = props
     const AnimatedFastImage = Animated.createAnimatedComponent(FastImage)
@@ -61,7 +61,7 @@ CacheeImage.propTypes = {
     priority: PropTypes.oneOf(['low', 'normal', 'high']),
     headers: PropTypes.any,
     resizeMode: PropTypes.oneOf(['contain', 'cover', 'stretch', 'center']),
-    thumbnailSource: PropTypes.string,
+    thumbnailSource: PropTypes.object,
 }
 
 CacheeImage.defaultProps = {

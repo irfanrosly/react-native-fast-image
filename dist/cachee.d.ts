@@ -9,7 +9,7 @@ export declare const CacheeImage: {
         priority: PropTypes.Requireable<string>;
         headers: PropTypes.Requireable<any>;
         resizeMode: PropTypes.Requireable<string>;
-        thumbnailSource: PropTypes.Requireable<string>;
+        thumbnailSource: PropTypes.Requireable<object>;
     };
     defaultProps: {
         priority: string;

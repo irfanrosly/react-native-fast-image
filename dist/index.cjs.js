@@ -158,8 +158,8 @@ const FastImageView = reactNative.requireNativeComponent('FastImageView', FastIm
 const CacheeImage = props => {
   var _source, _source2;
 
-  let thumbnailOpacity = new reactNative.Animated.Value(0);
-  let imageOpacity = new reactNative.Animated.Value(0.8);
+  const thumbnailOpacity = new reactNative.Animated.Value(0);
+  const imageOpacity = new reactNative.Animated.Value(0.8);
   let {
     source
   } = props;
@@ -222,7 +222,7 @@ CacheeImage.propTypes = {
   priority: PropTypes__default['default'].oneOf(['low', 'normal', 'high']),
   headers: PropTypes__default['default'].any,
   resizeMode: PropTypes__default['default'].oneOf(['contain', 'cover', 'stretch', 'center']),
-  thumbnailSource: PropTypes__default['default'].string
+  thumbnailSource: PropTypes__default['default'].object
 };
 CacheeImage.defaultProps = {
   priority: 'high'
