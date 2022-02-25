@@ -170,6 +170,7 @@ const CacheeImage = props => {
     headers,
     thumbnailSource
   } = props;
+  const AnimatedFastImage = reactNative.Animated.createAnimatedComponent(FastImage);
 
   if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
     source = { ...source,
@@ -196,7 +197,7 @@ const CacheeImage = props => {
     }).start();
   };
 
-  return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? /*#__PURE__*/React__default['default'].createElement(FastImage, _extends__default['default']({
+  return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? /*#__PURE__*/React__default['default'].createElement(AnimatedFastImage, _extends__default['default']({
     style: [...style, {
       opacity: imageOpacity
     }],
@@ -204,7 +205,7 @@ const CacheeImage = props => {
   }, props, {
     resizeMode: resizeMode,
     onLoad: onLoadImage
-  })) : /*#__PURE__*/React__default['default'].createElement(reactNative.Image, {
+  })) : /*#__PURE__*/React__default['default'].createElement(reactNative.Animated.Image, {
     source: thumbnailSource || source,
     resizeMode: resizeMode,
     style: [...style, {

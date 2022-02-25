@@ -160,6 +160,7 @@ const CacheeImage = props => {
     headers,
     thumbnailSource
   } = props;
+  const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
 
   if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
     source = { ...source,
@@ -186,7 +187,7 @@ const CacheeImage = props => {
     }).start();
   };
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? /*#__PURE__*/React.createElement(FastImage, _extends({
+  return /*#__PURE__*/React.createElement(React.Fragment, null, (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? /*#__PURE__*/React.createElement(AnimatedFastImage, _extends({
     style: [...style, {
       opacity: imageOpacity
     }],
@@ -194,7 +195,7 @@ const CacheeImage = props => {
   }, props, {
     resizeMode: resizeMode,
     onLoad: onLoadImage
-  })) : /*#__PURE__*/React.createElement(Image, {
+  })) : /*#__PURE__*/React.createElement(Animated.Image, {
     source: thumbnailSource || source,
     resizeMode: resizeMode,
     style: [...style, {

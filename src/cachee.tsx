@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Animated } from 'react-native'
+import { Animated } from 'react-native'
 import FastImage from './FastImage'
 import PropTypes from 'prop-types'
 
@@ -8,7 +8,7 @@ export const CacheeImage = (props: any) => {
     let imageOpacity = new Animated.Value(0.8)
     let { source } = props
     const { resizeMode, style, priority, headers, thumbnailSource } = props
-
+    const AnimatedFastImage = Animated.createAnimatedComponent(FastImage)
     if (!source?.priority && source.uri) {
         source = {
             ...source,
@@ -34,7 +34,7 @@ export const CacheeImage = (props: any) => {
     return (
         <>
             {source?.uri ? (
-                <FastImage
+                <AnimatedFastImage
                     style={[...style, { opacity: imageOpacity }]}
                     source={source}
                     {...props}
@@ -42,7 +42,7 @@ export const CacheeImage = (props: any) => {
                     onLoad={onLoadImage}
                 />
             ) : (
-                <Image
+                <Animated.Image
                     source={thumbnailSource || source}
                     resizeMode={resizeMode}
                     style={[...style, { opacity: thumbnailOpacity }]}
