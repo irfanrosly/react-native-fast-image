@@ -171,12 +171,9 @@ const CacheeImage = props => {
   }
 
   const renderSource = () => {
-    var _source2;
-
-    if ((_source2 = source) !== null && _source2 !== void 0 && _source2.uri) {
-      return source;
-    }
-
+    // if (source?.uri) {
+    //     return source
+    // }
     return thumbnailSource = { ...thumbnailSource,
       ...(headers && {
         headers: headers
@@ -188,13 +185,13 @@ const CacheeImage = props => {
   };
 
   console.log(renderSource());
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FastImage, _extends({
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FastImage, {
     style: { ...style
     },
-    source: renderSource()
-  }, props, {
+    source: renderSource() // {...props}
+    ,
     resizeMode: resizeMode
-  })));
+  }));
 };
 CacheeImage.propTypes = {
   source: PropTypes.any.isRequired,
