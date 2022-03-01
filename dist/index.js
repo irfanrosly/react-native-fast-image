@@ -1,6 +1,6 @@
 import _extends from '@babel/runtime/helpers/extends';
 import React, { forwardRef, memo } from 'react';
-import { Platform, NativeModules, StyleSheet, requireNativeComponent, Image, View, Animated } from 'react-native';
+import { Platform, NativeModules, StyleSheet, requireNativeComponent, Image, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 const isAndroid = Platform.OS === 'android';
@@ -148,8 +148,6 @@ const FastImageView = requireNativeComponent('FastImageView', FastImage, {
 const CacheeImage = props => {
   var _source, _source2;
 
-  let thumbnailOpacity = new Animated.Value(0);
-  let imageOpacity = new Animated.Value(0.8);
   let {
     source
   } = props;
@@ -160,7 +158,6 @@ const CacheeImage = props => {
     headers,
     thumbnailSource
   } = props;
-  const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
 
   if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
     source = { ...source,
@@ -173,38 +170,13 @@ const CacheeImage = props => {
     };
   }
 
-  const onLoadThumbnail = () => {
-    Animated.timing(thumbnailOpacity, {
-      toValue: 1,
-      useNativeDriver: true
-    }).start();
-  };
-
-  const onLoadImage = () => {
-    Animated.timing(imageOpacity, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true
-    }).start();
-  };
-
-  return /*#__PURE__*/React.createElement(React.Fragment, null, (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? /*#__PURE__*/React.createElement(AnimatedFastImage, _extends({
-    style: { ...style,
-      opacity: imageOpacity
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FastImage, _extends({
+    style: { ...style
     },
-    source: source
+    source: (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? source : thumbnailSource
   }, props, {
-    resizeMode: resizeMode,
-    onLoad: onLoadImage
-  })) : /*#__PURE__*/React.createElement(Animated.Image, {
-    source: thumbnailSource || source,
-    resizeMode: resizeMode,
-    style: { ...style,
-      opacity: imageOpacity
-    },
-    blurRadius: 10,
-    onLoad: onLoadThumbnail
-  }));
+    resizeMode: resizeMode
+  })));
 };
 CacheeImage.propTypes = {
   source: PropTypes.any.isRequired,
