@@ -14,9 +14,9 @@ export const CacheeImage = (props: any) => {
     }
 
     const renderSource = () => {
-        // if (source?.uri) {
-        //     return source
-        // }
+        if (source?.uri.includes('http')) {
+            return source
+        }
         return (thumbnailSource = {
             ...thumbnailSource,
             ...(headers && { headers: headers }),
