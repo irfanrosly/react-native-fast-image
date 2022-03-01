@@ -14,11 +14,10 @@ export const CacheeImage = (props: any) => {
     }
 
     const renderSource = () => {
-        if (!source.uri && thumbnailSource) {
-            return thumbnailSource
-        } else {
+        if (source?.uri) {
             return source
         }
+        return thumbnailSource
     }
 
     return (

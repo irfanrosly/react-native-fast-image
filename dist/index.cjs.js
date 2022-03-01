@@ -181,11 +181,13 @@ const CacheeImage = props => {
   }
 
   const renderSource = () => {
-    if (!source.uri && thumbnailSource) {
-      return thumbnailSource;
-    } else {
+    var _source2;
+
+    if ((_source2 = source) !== null && _source2 !== void 0 && _source2.uri) {
       return source;
     }
+
+    return thumbnailSource;
   };
 
   return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement(FastImage, _extends__default['default']({
