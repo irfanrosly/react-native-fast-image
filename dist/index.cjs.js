@@ -159,14 +159,14 @@ const CacheeImage = props => {
   var _source;
 
   let {
-    source
+    source,
+    thumbnailSource
   } = props;
   const {
     resizeMode,
     style,
     priority,
-    headers,
-    thumbnailSource
+    headers
   } = props;
 
   if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
@@ -187,7 +187,14 @@ const CacheeImage = props => {
       return source;
     }
 
-    return thumbnailSource;
+    return thumbnailSource = { ...thumbnailSource,
+      ...(headers && {
+        headers: headers
+      }),
+      ...(priority && {
+        priority: 'high'
+      })
+    };
   };
 
   console.log(renderSource());

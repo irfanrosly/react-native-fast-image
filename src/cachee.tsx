@@ -3,8 +3,8 @@ import FastImage from './FastImage'
 import PropTypes from 'prop-types'
 
 export const CacheeImage = (props: any) => {
-    let { source } = props
-    const { resizeMode, style, priority, headers, thumbnailSource } = props
+    let { source, thumbnailSource } = props
+    const { resizeMode, style, priority, headers } = props
     if (!source?.priority && source.uri) {
         source = {
             ...source,
@@ -17,8 +17,13 @@ export const CacheeImage = (props: any) => {
         if (source?.uri) {
             return source
         }
-        return thumbnailSource
+        return (thumbnailSource = {
+            ...thumbnailSource,
+            ...(headers && { headers: headers }),
+            ...(priority && { priority: 'high' }),
+        })
     }
+
     console.log(renderSource())
     return (
         <>
