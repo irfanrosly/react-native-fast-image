@@ -13,11 +13,19 @@ export const CacheeImage = (props: any) => {
         }
     }
 
+    const renderSource = () => {
+        if (!source.uri && thumbnailSource) {
+            return thumbnailSource
+        } else {
+            return source
+        }
+    }
+
     return (
         <>
             <FastImage
                 style={{ ...style }}
-                source={source?.uri ? source : thumbnailSource}
+                source={renderSource()}
                 {...props}
                 resizeMode={resizeMode}
             />

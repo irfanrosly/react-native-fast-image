@@ -156,7 +156,7 @@ const FastImageView = reactNative.requireNativeComponent('FastImageView', FastIm
 });
 
 const CacheeImage = props => {
-  var _source, _source2;
+  var _source;
 
   let {
     source
@@ -180,10 +180,18 @@ const CacheeImage = props => {
     };
   }
 
+  const renderSource = () => {
+    if (!source.uri && thumbnailSource) {
+      return thumbnailSource;
+    } else {
+      return source;
+    }
+  };
+
   return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement(FastImage, _extends__default['default']({
     style: { ...style
     },
-    source: (_source2 = source) !== null && _source2 !== void 0 && _source2.uri ? source : thumbnailSource
+    source: renderSource()
   }, props, {
     resizeMode: resizeMode
   })));
