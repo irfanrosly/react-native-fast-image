@@ -19,7 +19,7 @@ export const CacheeImage = (props: any) => {
         }
         return thumbnailSource
     }
-
+    console.log(renderSource())
     return (
         <>
             <FastImage

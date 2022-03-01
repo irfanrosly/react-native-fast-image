@@ -190,6 +190,7 @@ const CacheeImage = props => {
     return thumbnailSource;
   };
 
+  console.log(renderSource());
   return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement(FastImage, _extends__default['default']({
     style: { ...style
     },
