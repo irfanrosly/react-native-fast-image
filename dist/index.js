@@ -146,6 +146,8 @@ const FastImageView = requireNativeComponent('FastImageView', FastImage, {
 });
 
 const CacheeImage = props => {
+  var _source;
+
   let {
     source,
     thumbnailSource
@@ -155,27 +157,23 @@ const CacheeImage = props => {
     style,
     priority,
     headers
-  } = props; // if (!source?.priority && source.uri) {
-  //     source = {
-  //         ...source,
-  //         ...(headers && { headers: headers }),
-  //         ...(priority && { priority: 'high' }),
-  //     }
-  // }
+  } = props;
+
+  if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
+    source = { ...source,
+      ...(headers && {
+        headers: headers
+      }),
+      ...(priority && {
+        priority: 'high'
+      })
+    };
+  }
 
   const renderSource = () => {
-    var _source, _source2;
+    var _source2, _source2$uri;
 
-    if ((_source = source) !== null && _source !== void 0 && _source.uri.includes('http')) {
-      return source = { ...source,
-        ...(headers && {
-          headers: headers
-        }),
-        ...(priority && {
-          priority: 'high'
-        })
-      };
-    } else if (!((_source2 = source) !== null && _source2 !== void 0 && _source2.uri.includes('http')) && thumbnailSource) {
+    if (!((_source2 = source) !== null && _source2 !== void 0 && (_source2$uri = _source2.uri) !== null && _source2$uri !== void 0 && _source2$uri.includes('http')) && thumbnailSource) {
       return thumbnailSource;
     } else {
       return source;

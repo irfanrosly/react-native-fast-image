@@ -5,22 +5,16 @@ import PropTypes from 'prop-types'
 export const CacheeImage = (props: any) => {
     let { source, thumbnailSource } = props
     const { resizeMode, style, priority, headers } = props
-    // if (!source?.priority && source.uri) {
-    //     source = {
-    //         ...source,
-    //         ...(headers && { headers: headers }),
-    //         ...(priority && { priority: 'high' }),
-    //     }
-    // }
+    if (!source?.priority && source.uri) {
+        source = {
+            ...source,
+            ...(headers && { headers: headers }),
+            ...(priority && { priority: 'high' }),
+        }
+    }
 
     const renderSource = () => {
-        if (source?.uri.includes('http')) {
-            return (source = {
-                ...source,
-                ...(headers && { headers: headers }),
-                ...(priority && { priority: 'high' }),
-            })
-        } else if (!source?.uri.includes('http') && thumbnailSource) {
+        if (!source?.uri?.includes('http') && thumbnailSource) {
             return thumbnailSource
         } else {
             return source
