@@ -21,7 +21,6 @@ export const CacheeImage = (props: any) => {
         }
     }
 
-    console.log(renderSource())
     return (
         <>
             <FastImage

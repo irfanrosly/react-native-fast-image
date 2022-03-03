@@ -180,7 +180,6 @@ const CacheeImage = props => {
     }
   };
 
-  console.log(renderSource());
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FastImage, {
     style: { ...style
     },
