@@ -166,7 +166,8 @@ const CacheeImage = props => {
     resizeMode,
     style,
     priority,
-    headers
+    headers,
+    defaultSource
   } = props;
 
   if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
@@ -185,6 +186,9 @@ const CacheeImage = props => {
 
     if (!((_source2 = source) !== null && _source2 !== void 0 && (_source2$uri = _source2.uri) !== null && _source2$uri !== void 0 && _source2$uri.includes('http')) && thumbnailSource) {
       return thumbnailSource;
+    } else if (!thumbnailSource && !source && defaultSource) {
+      return source = { ...defaultSource
+      };
     } else {
       return source;
     }
@@ -193,8 +197,7 @@ const CacheeImage = props => {
   return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement(FastImage, {
     style: { ...style
     },
-    source: renderSource() // {...props}
-    ,
+    source: renderSource(),
     resizeMode: resizeMode
   }));
 };
