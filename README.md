@@ -72,6 +72,8 @@ yarn add https://github.com/irfanrosly/react-native-fast-image#next
 cd ios && pod install
 ```
 
+### Basic usage
+
 ```jsx
 import { CacheeImage } from 'cachee'
 
@@ -82,6 +84,25 @@ const YourImage = () => (
             uri: 'https://unsplash.it/400/400?image=1',
         }}
         resizeMode="contain"
+    />
+)
+```
+
+### Usage with thumbnailSource _(Optional)_
+
+```jsx
+import { CacheeImage } from 'cachee'
+
+const YourImage = () => (
+    <CacheeImage
+        style={{ width: 200, height: 200 }}
+        source={{
+            uri: 'https://unsplash.it/400/400?image=1',
+        }}
+        resizeMode="contain"
+        thumbnailSource={{
+            uri: 'https://unsplash.it/400/400?image=1',
+        }}
     />
 )
 ```
@@ -207,6 +228,20 @@ In this case the image will still be styled and laid out the same way as `FastIm
 ### `tintColor?: number | string`
 
 If supplied, changes the color of all the non-transparent pixels to the given color.
+
+---
+
+### `thumbnailSource?: object`
+
+Source for the remote image to load.
+
+---
+
+### `thumbnailSource.uri?: string`
+
+Remote url to load the image from. e.g. `'https://facebook.github.io/react/img/logo_og.png'`.
+
+---
 
 ## Static Methods
 

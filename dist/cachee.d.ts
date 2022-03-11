@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import PropTypes from 'prop-types';
-export declare const CustomFastImage: {
+export declare const CacheeImage: {
     (props: any): JSX.Element;
     propTypes: {
         source: PropTypes.Validator<any>;
@@ -9,6 +9,7 @@ export declare const CustomFastImage: {
         priority: PropTypes.Requireable<string>;
         headers: PropTypes.Requireable<any>;
         resizeMode: PropTypes.Requireable<string>;
+        thumbnailSource: PropTypes.Requireable<object>;
     };
     defaultProps: {
         priority: string;

@@ -159,20 +159,14 @@ const CacheeImage = props => {
   var _source;
 
   let {
-    source // already
-
+    source,
+    thumbnailSource
   } = props;
   const {
     resizeMode,
-    //already
     style,
-    //already
-    // name, //already ???
-    // key, //already ???
     priority,
-    // new
-    headers // new
-
+    headers
   } = props;
 
   if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
@@ -184,19 +178,24 @@ const CacheeImage = props => {
         priority: 'high'
       })
     };
-  } // facade pattern
+  }
 
+  const renderSource = () => {
+    var _source2, _source2$uri;
 
-  return /*#__PURE__*/React__default['default'].createElement(FastImage // key={key}
-  // name={name}
-  , _extends__default['default']({
+    if (!((_source2 = source) !== null && _source2 !== void 0 && (_source2$uri = _source2.uri) !== null && _source2$uri !== void 0 && _source2$uri.includes('http')) && thumbnailSource) {
+      return thumbnailSource;
+    } else {
+      return source;
+    }
+  };
+
+  return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement(FastImage, {
     style: { ...style
     },
-    source: source
-  }, props, {
-    resizeMode: resizeMode //   onLoad={onImageLoad}
-    // onError={onError}
-
+    source: renderSource() // {...props}
+    ,
+    resizeMode: resizeMode
   }));
 };
 CacheeImage.propTypes = {
@@ -205,7 +204,8 @@ CacheeImage.propTypes = {
   key: PropTypes__default['default'].string,
   priority: PropTypes__default['default'].oneOf(['low', 'normal', 'high']),
   headers: PropTypes__default['default'].any,
-  resizeMode: PropTypes__default['default'].oneOf(['contain', 'cover', 'stretch', 'center'])
+  resizeMode: PropTypes__default['default'].oneOf(['contain', 'cover', 'stretch', 'center']),
+  thumbnailSource: PropTypes__default['default'].object
 };
 CacheeImage.defaultProps = {
   priority: 'high'
