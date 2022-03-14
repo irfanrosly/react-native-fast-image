@@ -180,7 +180,7 @@ const CacheeImage = props => {
       return source;
     } else if (!source.uri.includes('http') && thumbnailSource) {
       return thumbnailSource;
-    } else if (!source.uri.includes('http') && !!thumbnailSource) {
+    } else if (!source.uri.includes('http') && !thumbnailSource && defaultSource) {
       return defaultSource;
     } else {
       return source;
