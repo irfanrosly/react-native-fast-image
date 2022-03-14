@@ -186,13 +186,13 @@ const CacheeImage = props => {
 
 
   const renderSource = () => {
-    var _source2, _source2$uri;
+    var _source2, _source2$uri, _source3, _source3$uri, _source4, _source4$uri;
 
     if ((_source2 = source) !== null && _source2 !== void 0 && (_source2$uri = _source2.uri) !== null && _source2$uri !== void 0 && _source2$uri.includes('http')) {
       return source;
-    } else if (!source.uri.includes('http') && thumbnailSource) {
+    } else if (!((_source3 = source) !== null && _source3 !== void 0 && (_source3$uri = _source3.uri) !== null && _source3$uri !== void 0 && _source3$uri.includes('http')) && thumbnailSource) {
       return thumbnailSource;
-    } else if (!source.uri.includes('http') && !thumbnailSource && defaultSource) {
+    } else if (!((_source4 = source) !== null && _source4 !== void 0 && (_source4$uri = _source4.uri) !== null && _source4$uri !== void 0 && _source4$uri.includes('http')) && !thumbnailSource && defaultSource) {
       return defaultSource;
     } else {
       return source;

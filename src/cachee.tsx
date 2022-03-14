@@ -20,10 +20,10 @@ export const CacheeImage = (props: any) => {
     const renderSource = () => {
         if (source?.uri?.includes('http')) {
             return source
-        } else if (!source.uri.includes('http') && thumbnailSource) {
+        } else if (!source?.uri?.includes('http') && thumbnailSource) {
             return thumbnailSource
         } else if (
-            !source.uri.includes('http') &&
+            !source?.uri?.includes('http') &&
             !thumbnailSource &&
             defaultSource
         ) {
