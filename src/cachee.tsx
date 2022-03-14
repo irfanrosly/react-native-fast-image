@@ -18,7 +18,7 @@ export const CacheeImage = (props: any) => {
     // if real image not ready, thumbnailSource not ready, show placeholder
     // if real image not ready, thumbnailSource not ready, placeholder not ready, show defaultSource
     const renderSource = () => {
-        if (source.uri.includes('http')) {
+        if (source?.uri?.includes('http')) {
             return source
         } else if (!source.uri.includes('http') && thumbnailSource) {
             return thumbnailSource
