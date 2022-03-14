@@ -179,19 +179,33 @@ const CacheeImage = props => {
         priority: 'high'
       })
     };
-  }
+  } // if real image ready , show real image
+  // if real image not ready, show thumbnail
+  // if real image not ready, thumbnailSource not ready, show placeholder
+  // if real image not ready, thumbnailSource not ready, placeholder not ready, show defaultSource
+
 
   const renderSource = () => {
-    var _source2, _source2$uri, _source3, _source3$uri;
-
-    if (!((_source2 = source) !== null && _source2 !== void 0 && (_source2$uri = _source2.uri) !== null && _source2$uri !== void 0 && _source2$uri.includes('http')) && thumbnailSource) {
+    if (source.uri.includes('http')) {
+      return source;
+    } else if (!source.uri.includes('http') && thumbnailSource) {
       return thumbnailSource;
-    } else if (!thumbnailSource && !((_source3 = source) !== null && _source3 !== void 0 && (_source3$uri = _source3.uri) !== null && _source3$uri !== void 0 && _source3$uri.includes('http')) && defaultSource) {
-      return source = { ...defaultSource
-      };
+    } else if (!source.uri.includes('http') && !!thumbnailSource) {
+      return defaultSource;
     } else {
       return source;
-    }
+    } // if (!source?.uri?.includes('http') && thumbnailSource) {
+    //     return thumbnailSource
+    // } else if (
+    //     !thumbnailSource &&
+    //     !source?.uri?.includes('http') &&
+    //     defaultSource
+    // ) {
+    //     return defaultSource
+    // } else {
+    //     return source
+    // }
+
   };
 
   return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement(FastImage, {

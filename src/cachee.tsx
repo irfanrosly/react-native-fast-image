@@ -13,18 +13,31 @@ export const CacheeImage = (props: any) => {
         }
     }
 
+    // if real image ready , show real image
+    // if real image not ready, show thumbnail
+    // if real image not ready, thumbnailSource not ready, show placeholder
+    // if real image not ready, thumbnailSource not ready, placeholder not ready, show defaultSource
     const renderSource = () => {
-        if (!source?.uri?.includes('http') && thumbnailSource) {
+        if (source.uri.includes('http')) {
+            return source
+        } else if (!source.uri.includes('http') && thumbnailSource) {
             return thumbnailSource
-        } else if (
-            !thumbnailSource &&
-            !source?.uri?.includes('http') &&
-            defaultSource
-        ) {
-            return (source = { ...defaultSource })
+        } else if (!source.uri.includes('http') && !!thumbnailSource) {
+            return defaultSource
         } else {
             return source
         }
+        // if (!source?.uri?.includes('http') && thumbnailSource) {
+        //     return thumbnailSource
+        // } else if (
+        //     !thumbnailSource &&
+        //     !source?.uri?.includes('http') &&
+        //     defaultSource
+        // ) {
+        //     return defaultSource
+        // } else {
+        //     return source
+        // }
     }
 
     return (
