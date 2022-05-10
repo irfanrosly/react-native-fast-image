@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 export const CacheeImage = (props: any) => {
     let { source, thumbnailSource } = props
-    const { resizeMode, style, priority, headers, defaultSource } = props
+    const { resizeMode, style, priority, headers, defaultSource, onLoad, onError } = props
     if (!source?.priority && source.uri) {
         source = {
             ...source,
@@ -37,6 +37,8 @@ export const CacheeImage = (props: any) => {
                 style={{ ...style }}
                 source={renderSource()}
                 resizeMode={resizeMode}
+                onError={onError}
+                onLoad={onLoad}
             />
         </>
     )
