@@ -167,7 +167,9 @@ const CacheeImage = props => {
     style,
     priority,
     headers,
-    defaultSource
+    defaultSource,
+    onLoad,
+    onError
   } = props;
 
   if (!((_source = source) !== null && _source !== void 0 && _source.priority) && source.uri) {
@@ -201,7 +203,9 @@ const CacheeImage = props => {
     style: { ...style
     },
     source: renderSource(),
-    resizeMode: resizeMode
+    resizeMode: resizeMode,
+    onError: onError,
+    onLoad: onLoad
   }));
 };
 CacheeImage.propTypes = {
